@@ -1,7 +1,5 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -15,4 +13,15 @@
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
+});
+
+//$router->post('/makeCart', 'APIController@makeCart');
+
+$router->group(['prefix' => 'admin'], function () use ($router) {
+    $router->post('/login', 'AuthController@login');
+    $router->group(['middleware' => 'auth'], function () use ($router) {
+        $router->post('/logout', 'AuthController@logout');
+
+    });
+
 });
