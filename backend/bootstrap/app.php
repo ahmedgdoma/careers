@@ -48,6 +48,7 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files
@@ -58,7 +59,7 @@ $app->singleton(
 | the default version. You may register other files below as needed.
 |
 */
-
+$app->configure('filesystems');
 $app->configure('app');
 
 /*

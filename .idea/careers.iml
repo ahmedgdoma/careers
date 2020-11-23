@@ -37,6 +37,8 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/illuminate/view" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/laravel/lumen-framework" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/lcobucci/jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/league/mime-type-detection" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/mockery/mockery" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/myclabs/deep-copy" />

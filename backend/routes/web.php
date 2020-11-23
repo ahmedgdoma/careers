@@ -11,17 +11,30 @@
 |
 */
 
+use App\Http\Controllers\JobController;
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-
-//$router->post('/makeCart', 'APIController@makeCart');
+$router->get('/jobs', 'JobController@index');
+$router->post('/application', 'ApplicationController@store');
 
 $router->group(['prefix' => 'admin'], function () use ($router) {
-    $router->post('/login', 'AuthController@login');
-    $router->group(['middleware' => 'auth'], function () use ($router) {
-        $router->post('/logout', 'AuthController@logout');
 
+    $router->post('/login', 'AuthController@login');
+
+    $router->group(['middleware' => 'auth'], function () use ($router) {
+        $router->get('/jobs', 'JobController@index');
+        $router->get('/jobs/{id}', 'JobController@show');
+        $router->post('/jobs', 'JobController@store');
+        $router->patch('/jobs/{id}', 'JobController@update');
+        $router->delete('/jobs/{id}', 'JobController@destroy');
+
+
+        $router->get('/job/{job_id}/applications', 'ApplicationController@jobApplications');
+        $router->get('/application/{id}', 'ApplicationController@show');
+
+        $router->post('/logout', 'AuthController@logout');
     });
 
 });
