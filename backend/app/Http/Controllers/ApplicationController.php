@@ -56,10 +56,12 @@ class ApplicationController extends Controller
             'notes' => 'required|string',
         ]);
         $application = $request->all();
-        $cv = $request->file('cv');
-        $cv->storeAs('cv', $cv->getClientOriginalName());
+        $extension = explode('/', mime_content_type($application['cv']))[1];
+        $cv_date = base64_decode($application['cv']);
+        Storage::disk('local')->put("cv/".$application['name'].".". $extension , $cv_date);
 
-        $url = Storage::url($cv->getClientOriginalName());
+
+        $url = Storage::url($application['name'].".". $extension);
         $application['cv'] = $url;
         $application['dob'] = Carbon::createFromDate($application['dob']);
         try{

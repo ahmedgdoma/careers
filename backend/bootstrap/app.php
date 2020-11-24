@@ -49,6 +49,7 @@ $app->singleton(
 );
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files
@@ -61,6 +62,7 @@ $app->singleton(
 */
 $app->configure('filesystems');
 $app->configure('app');
+$app->configure('cors');
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +83,11 @@ $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
 ]);
 
+$app->middleware([
+    // ...
+    Fruitcake\Cors\HandleCors::class,
+]);
+
 
 
 /*
@@ -98,6 +105,7 @@ $app->routeMiddleware([
 $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+$app->register(Fruitcake\Cors\CorsServiceProvider::class);
 
 
 /*

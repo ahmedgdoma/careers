@@ -11,12 +11,11 @@
 |
 */
 
-use App\Http\Controllers\JobController;
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-$router->get('/jobs', 'JobController@index');
+$router->get('/available-jobs', 'JobController@availableJobs');
 $router->post('/application', 'ApplicationController@store');
 
 $router->group(['prefix' => 'admin'], function () use ($router) {

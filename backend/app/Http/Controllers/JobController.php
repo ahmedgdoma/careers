@@ -22,6 +22,18 @@ class JobController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function availableJobs()
+    {
+        $today = Carbon::today();
+        $jobs = Job::where('start_date', '<', $today)->get();
+        return response()->json(['data' => $jobs], 200);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
