@@ -1,0 +1,1 @@
+export var apiLink = 'http://localhost:8000/';
