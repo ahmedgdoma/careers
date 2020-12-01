@@ -3,14 +3,14 @@ import BackendApi from '../Api/BackendApi';
 import { Link } from 'react-router-dom';
 
 
-export default class ListJobs extends Component{
+export default class AdminListJobs extends Component{
     constructor(props){
         super(props);
         this.state = {jobs: {}};
     }
     componentDidMount(){
-        let backendApi = new BackendApi();
-        backendApi.get('available-jobs')
+        let backendApi = new BackendApi(true);
+        backendApi.get('admin/jobs')
         .then(res => res.json())
         .then((jsonRes) => this.setState({jobs: jsonRes.data}))
         .catch((e => console.log(e)));
@@ -25,17 +25,25 @@ export default class ListJobs extends Component{
             <td>{job.title}</td>
             <td>{job.required_experience_level}</td>
             <td>{job.brief}</td>
-            <td><Link to={"/apply/" + job.id}>Apply</Link></td>
+            <td>
+                <Link className="btn btn-primary" to={"/admin/update-job/" + job.id}>update</Link>
+                <Link className="btn btn-success" to={"/admin/jobs/" + job.id + "/applications"}>view applications</Link>
+                <Link className="btn btn-danger" to={"/admin/jobs/" + job.id + "/delete"}>delete</Link>
+                
+            </td>
             </tr>
             );
         return (
+            <div>
+                <Link className="btn btn-danger" to="/admin/logout">Logout</Link>
+                <Link className="btn btn-success" to="/admin/create-job">create job</Link>
             <table className="table table-striped">
                 <thead>
                 <tr>
                     <th>title</th>
                     <th>required experience level</th>
                     <th>brief</th>
-                    <th>apply</th>
+                    <th>actions</th>
 
                 </tr>
                 </thead>
@@ -43,6 +51,7 @@ export default class ListJobs extends Component{
                 {jobItems}
                 </tbody>
             </table>
+            </div>
         )
         }
         

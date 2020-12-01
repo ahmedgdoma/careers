@@ -30,3 +30,14 @@ create a symlink from storage to public
 `
 ## Call APIs
 serve project with command `php -S localhost:8000 -t public`
+
+## to start frontend 
+`cd frontend && npm start`
+## to visit admin panel in frontend
+
+go to `localhost:3000/admin`
+
+and login with
+`admin@careers.dev`
+
+password: `admin`
