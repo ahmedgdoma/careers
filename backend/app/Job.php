@@ -21,4 +21,13 @@ class Job extends Model
         return $this->hasMany('App\Application');
     }
 
+    // this is a recommended way to declare event handlers
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($job) {
+            $job->applications()->delete();
+        });
+    }
+
 }

@@ -1,7 +1,10 @@
-import {Router, BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
+import Auth from './Auth/Auth';
 import ApplyJob from './Components/ApplyJob';
 import ListJobs from './Components/ListJobs';
+import AdminRoutes from './Components/AdminRoutes';
 function App() {
+
   return (
     <BrowserRouter>
         
@@ -11,6 +14,7 @@ function App() {
         <Route path="/" exact={true}>
           <ListJobs />
         </Route>
+        <AdminRoutes />
     </BrowserRouter>
   );
 }
